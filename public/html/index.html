@@ -9,9 +9,11 @@
       <button ng-click='createTodo(newTodo)'>Add New Todo</button>
       <ul>
         <li ng-repeat='todo in todos track by $index'>
-          <input type="text" ng-show='isEditing' ng-model='todo'>
-          {{ todo.desc }}
+          <input type="text" ng-show='todo.isBeingEdited' ng-model='todo.desc'>
+          <span ng-hide='todo.isBeingEdited'>{{ todo.desc }}</span>
           <button ng-click='deleteTodo($index)'>&times;</button>
+          <button ng-click='editTodo(todo)' ng-hide='todo.isBeingEdited'>Edit</button>
+          <button ng-click='saveTodo($index, todo)' ng-show='todo.isBeingEdited'>Save</button>
         </li>
       </ul>
     </div>
